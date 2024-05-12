@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   Navbar,
@@ -14,11 +16,14 @@ import { IoCartOutline, IoSearchSharp } from "react-icons/io5";
 import AvatarDropdown from "./AvatarDropdown";
 
 export default function NavbarComponent() {
+  // TODO:: Implement the logic to check if the user is authenticated
+  const isAuthenticated = false;
+
   return (
     <Navbar className="bg-[#E40046]">
       <NavbarBrand className="min-w-36 max-w-36">
         <Link href="/">
-          <Image src={Logo} alt="Snapdeal" />
+          <Image src={Logo} alt="Snapdeal" priority={true} />
         </Link>
       </NavbarBrand>
       <NavbarContent className="flex w-full gap-0 mx-12" justify="center">
@@ -52,7 +57,13 @@ export default function NavbarComponent() {
         </NavbarItem>
       </NavbarContent>
       <NavbarContent as="div" className="items-center" justify="end">
-        <AvatarDropdown />
+        {isAuthenticated ? (
+          <AvatarDropdown />
+        ) : (
+          <Link href="/login">
+            <Button>Login</Button>
+          </Link>
+        )}
       </NavbarContent>
     </Navbar>
   );
