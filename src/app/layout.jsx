@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Nabvar from "@/components/Nabvar";
+import Providers from "@/providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,8 +14,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Nabvar />
-        {children}
+        <Providers>
+          <Nabvar />
+          {children}
+        </Providers>
       </body>
     </html>
   );
