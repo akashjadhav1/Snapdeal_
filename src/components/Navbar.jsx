@@ -14,10 +14,10 @@ import Logo from "@/assets/logo.png";
 import Image from "next/image";
 import { IoCartOutline, IoSearchSharp } from "react-icons/io5";
 import AvatarDropdown from "./AvatarDropdown";
+import { useSelector } from "react-redux";
 
 export default function NavbarComponent() {
-  // TODO:: Implement the logic to check if the user is authenticated
-  const isAuthenticated = false;
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
 
   return (
     <Navbar className="bg-[#E40046]">

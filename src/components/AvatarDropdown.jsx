@@ -8,9 +8,17 @@ import {
   DropdownItem,
   Avatar,
 } from "@nextui-org/react";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "@/features/user/userSlice";
 
 export default function AvatarDropdown() {
+  const user = useSelector((state) => state.user.data);
   const [isOpen, setIsOpen] = React.useState(false);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
 
   return (
     <Dropdown isOpen={isOpen} placement="bottom-end">
@@ -23,10 +31,9 @@ export default function AvatarDropdown() {
           isBordered
           as="button"
           className="transition-transform"
-          color="secondary"
-          name="Jason Hughes"
+          name={user.displayName}
           size="sm"
-          src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+          src={user.photoURL}
         />
       </DropdownTrigger>
       <DropdownMenu
@@ -38,12 +45,12 @@ export default function AvatarDropdown() {
       >
         <DropdownItem key="profile" className="h-14 gap-2">
           <p className="font-semibold">Signed in as</p>
-          <p className="font-semibold">zoey@example.com</p>
+          <p className="font-semibold">{user.email}</p>
         </DropdownItem>
         <DropdownItem key="account">Your Account</DropdownItem>
         <DropdownItem key="orders">Your Orders</DropdownItem>
         <DropdownItem key="shortlist">Your Shortlist</DropdownItem>
-        <DropdownItem key="logout" color="danger">
+        <DropdownItem key="logout" color="danger" onClick={handleLogout}>
           Log Out
         </DropdownItem>
       </DropdownMenu>
