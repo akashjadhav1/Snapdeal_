@@ -7,12 +7,13 @@ import {
   DropdownMenu,
   DropdownItem,
   Avatar,
+  Skeleton,
 } from "@nextui-org/react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@/features/user/userSlice";
 
 export default function AvatarDropdown() {
-  const user = useSelector((state) => state.user.data);
+  const user = useSelector((state) => state.user);
   const [isOpen, setIsOpen] = React.useState(false);
   const dispatch = useDispatch();
 
@@ -31,9 +32,9 @@ export default function AvatarDropdown() {
           isBordered
           as="button"
           className="transition-transform"
-          name={user.displayName}
+          name={user.data?.displayName || null}
           size="sm"
-          src={user.photoURL}
+          src={user.data?.photoURL || <Skeleton />}
         />
       </DropdownTrigger>
       <DropdownMenu
@@ -45,7 +46,7 @@ export default function AvatarDropdown() {
       >
         <DropdownItem key="profile" className="h-14 gap-2">
           <p className="font-semibold">Signed in as</p>
-          <p className="font-semibold">{user.email}</p>
+          <p className="font-semibold">{user.data?.email}</p>
         </DropdownItem>
         <DropdownItem key="account">Your Account</DropdownItem>
         <DropdownItem key="orders">Your Orders</DropdownItem>

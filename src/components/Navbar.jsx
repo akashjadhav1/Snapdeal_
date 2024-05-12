@@ -17,7 +17,7 @@ import AvatarDropdown from "./AvatarDropdown";
 import { useSelector } from "react-redux";
 
 export default function NavbarComponent() {
-  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const user = useSelector((state) => state.user);
 
   return (
     <Navbar className="bg-[#E40046]">
@@ -57,7 +57,7 @@ export default function NavbarComponent() {
         </NavbarItem>
       </NavbarContent>
       <NavbarContent as="div" className="items-center" justify="end">
-        {isAuthenticated ? (
+        {user.isAuthenticated || user.status !== "fulfilled" ? (
           <AvatarDropdown />
         ) : (
           <Link href="/login">
