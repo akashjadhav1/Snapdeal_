@@ -11,6 +11,7 @@ import {
 } from "@nextui-org/react";
 import Link from "next/link";
 import Logo from "@/assets/logo.png";
+import LogoMobile from "@/assets/logo-mobile.png";
 import Image from "next/image";
 import { IoCartOutline, IoSearchSharp } from "react-icons/io5";
 import AvatarDropdown from "./AvatarDropdown";
@@ -20,15 +21,30 @@ export default function NavbarComponent() {
   const user = useSelector((state) => state.user);
 
   return (
-    <Navbar className="bg-[#E40046]">
-      <NavbarBrand as={Link} href="/" className="min-w-36 max-w-36">
-        <Image src={Logo} alt="Snapdeal" priority={true} />
+    <Navbar className="bg-[#E40046] overflow-x-auto">
+      <NavbarBrand
+        as={Link}
+        href="/"
+        className="min-w-16 min-h-16 md:min-w-36 md:max-w-36"
+      >
+        <Image
+          src={Logo}
+          alt="Snapdeal"
+          priority={true}
+          className="hidden md:flex"
+        />
+        <Image
+          src={LogoMobile}
+          alt="Snapdeal"
+          priority={true}
+          className="md:hidden"
+        />
       </NavbarBrand>
-      <NavbarContent className="flex w-full gap-0 mx-12" justify="center">
-        <NavbarItem className="min-w-full">
+      <NavbarContent className="flex w-full mx-12" justify="center">
+        <NavbarItem className="flex min-w-full">
           <Input
             classNames={{
-              base: "w-full h-10",
+              base: "w-1/2 md:w-3/4 max-w-3/4 h-10",
               mainWrapper: "h-full",
               input: "text-small p-4",
               inputWrapper:
@@ -38,23 +54,17 @@ export default function NavbarComponent() {
             size="sm"
             type="search"
           />
-        </NavbarItem>
-        <NavbarItem>
-          <Button className="rounded-none bg-[#333333] text-white p-4 max-w-1/4">
-            <IoSearchSharp className="text-white text-lg" />
+          <Button className="rounded-none bg-[#333333] w-1/4 text-white p-4">
+            <IoSearchSharp className="text-white text-lg flex-shrink-0" />
             Search
           </Button>
         </NavbarItem>
       </NavbarContent>
-      <NavbarContent className="hidden sm:flex">
-        <NavbarItem>
-          <Button className="rounded-none bg-transparent text-white p-4 min-w-30">
-            Cart
-            <IoCartOutline className="text-white text-xl" />
-          </Button>
-        </NavbarItem>
-      </NavbarContent>
       <NavbarContent as="div" className="items-center" justify="end">
+        <Button className="hidden md:flex rounded-none bg-transparent text-white p-4 min-w-30">
+          Cart
+          <IoCartOutline className="text-white text-xl" />
+        </Button>
         {user.isAuthenticated || user.status !== "fulfilled" ? (
           <AvatarDropdown />
         ) : (
