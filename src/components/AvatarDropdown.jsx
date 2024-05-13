@@ -10,6 +10,7 @@ import {
 } from "@nextui-org/react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@/features/user/userSlice";
+import Link from "next/link";
 
 export default function AvatarDropdown() {
   const user = useSelector((state) => state.user);
@@ -52,10 +53,20 @@ export default function AvatarDropdown() {
             <p className="font-semibold">Signed in as</p>
             <p className="font-semibold">{user.data?.email}</p>
           </DropdownItem>
-          <DropdownItem key="orders" textValue="orders">
+          <DropdownItem
+            as={Link}
+            href="/orders"
+            key="orders"
+            textValue="orders"
+          >
             Your Orders
           </DropdownItem>
-          <DropdownItem key="shortlist" textValue="shortlist">
+          <DropdownItem
+            as={Link}
+            href="/shortlist"
+            key="shortlist"
+            textValue="shortlist"
+          >
             Your Shortlist
           </DropdownItem>
           <DropdownItem
