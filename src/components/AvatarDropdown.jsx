@@ -32,9 +32,9 @@ export default function AvatarDropdown() {
           isBordered
           as="button"
           className="transition-transform"
-          name={user.data?.displayName || null}
+          name={user.data?.displayName}
           size="sm"
-          src={user.data?.photoURL || <Skeleton />}
+          src={user.data?.photoURL}
         />
       </DropdownTrigger>
       {user.isAuthenticated && (
