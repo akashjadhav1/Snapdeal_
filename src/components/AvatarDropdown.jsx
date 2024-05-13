@@ -52,9 +52,6 @@ export default function AvatarDropdown() {
             <p className="font-semibold">Signed in as</p>
             <p className="font-semibold">{user.data?.email}</p>
           </DropdownItem>
-          <DropdownItem key="account" textValue="account">
-            Your Account
-          </DropdownItem>
           <DropdownItem key="orders" textValue="orders">
             Your Orders
           </DropdownItem>
