@@ -21,10 +21,8 @@ export default function NavbarComponent() {
 
   return (
     <Navbar className="bg-[#E40046]">
-      <NavbarBrand className="min-w-36 max-w-36">
-        <Link href="/">
-          <Image src={Logo} alt="Snapdeal" priority={true} />
-        </Link>
+      <NavbarBrand as={Link} href="/" className="min-w-36 max-w-36">
+        <Image src={Logo} alt="Snapdeal" priority={true} />
       </NavbarBrand>
       <NavbarContent className="flex w-full gap-0 mx-12" justify="center">
         <NavbarItem className="min-w-full">
