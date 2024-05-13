@@ -7,7 +7,6 @@ import {
   DropdownMenu,
   DropdownItem,
   Avatar,
-  Skeleton,
 } from "@nextui-org/react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "@/features/user/userSlice";
@@ -45,14 +44,29 @@ export default function AvatarDropdown() {
           aria-label="Profile Actions"
           variant="flat"
         >
-          <DropdownItem key="profile" className="h-14 gap-2">
+          <DropdownItem
+            key="profile"
+            textValue="profile"
+            className="h-14 gap-2"
+          >
             <p className="font-semibold">Signed in as</p>
             <p className="font-semibold">{user.data?.email}</p>
           </DropdownItem>
-          <DropdownItem key="account">Your Account</DropdownItem>
-          <DropdownItem key="orders">Your Orders</DropdownItem>
-          <DropdownItem key="shortlist">Your Shortlist</DropdownItem>
-          <DropdownItem key="logout" color="danger" onClick={handleLogout}>
+          <DropdownItem key="account" textValue="account">
+            Your Account
+          </DropdownItem>
+          <DropdownItem key="orders" textValue="orders">
+            Your Orders
+          </DropdownItem>
+          <DropdownItem key="shortlist" textValue="shortlist">
+            Your Shortlist
+          </DropdownItem>
+          <DropdownItem
+            key="logout"
+            textValue="logout"
+            color="danger"
+            onClick={handleLogout}
+          >
             Log Out
           </DropdownItem>
         </DropdownMenu>
