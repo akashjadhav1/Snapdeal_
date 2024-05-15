@@ -12,7 +12,10 @@ import Link from "next/link";
 
 function Login() {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [formData, setFormData] = useState({
+    email: undefined,
+    password: undefined,
+  });
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -52,8 +55,8 @@ function Login() {
             <div className="flex flex-col items-center">
               <Input
                 type="email"
-                name=""
-                id=""
+                name="email"
+                id="email"
                 placeholder="Email"
                 onChange={handleChange}
                 value={formData.email}
@@ -62,13 +65,18 @@ function Login() {
               />
               <Input
                 type="password"
-                name=""
-                id=""
+                name="password"
+                id="password"
                 placeholder="Password"
                 onChange={handleChange}
                 value={formData.password}
                 stateContent={<MdLockOutline className="text-gray-400 mr-2" />}
                 className="bg-gray-100 outline-none text-sm flex-1 mb-2"
+                errorMessage="Password must be at least 8 characters long"
+                isInvalid={
+                  formData.password !== undefined &&
+                  formData.password.length < 8
+                }
               />
 
               <Button
