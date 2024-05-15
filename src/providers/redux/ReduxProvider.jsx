@@ -7,8 +7,7 @@ import ReduxLoader from "./ReduxLoader";
 export default function ReduxProvider({ children }) {
   return (
     <Provider store={store}>
-      <ReduxLoader />
-      {children}
+      <ReduxLoader>{children}</ReduxLoader>
     </Provider>
   );
 }
