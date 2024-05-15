@@ -8,6 +8,7 @@ import {
   NavbarItem,
   Input,
   Button,
+  useDisclosure,
 } from "@nextui-org/react";
 import Link from "next/link";
 import Logo from "@/assets/logo.png";
@@ -16,9 +17,14 @@ import Image from "next/image";
 import { IoCartOutline, IoSearchSharp } from "react-icons/io5";
 import AvatarDropdown from "./AvatarDropdown";
 import { useSelector } from "react-redux";
+import LoginModal from "./LoginModal";
+import { usePathname } from "next/navigation";
 
 export default function NavbarComponent() {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const user = useSelector((state) => state.user);
+  const path = usePathname();
+  if (path === "/login") return null;
 
   return (
     <Navbar className="bg-[#E40046] overflow-x-auto">
@@ -68,9 +74,10 @@ export default function NavbarComponent() {
         {user.isAuthenticated || user.status !== "fulfilled" ? (
           <AvatarDropdown />
         ) : (
-          <Link href="/login">
-            <Button>Login</Button>
-          </Link>
+          <>
+            <Button onClick={onOpen}>Login</Button>
+            <LoginModal isOpen={isOpen} onOpenChange={onOpenChange} />
+          </>
         )}
       </NavbarContent>
     </Navbar>

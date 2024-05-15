@@ -11,7 +11,6 @@ export default function ReduxLoader({ children }) {
 
   useEffect(() => {
     dispatch(fetchUser());
-    // No need for cleanup as there's no subscription to unsubscribe from
   }, [dispatch]);
 
   useEffect(() => {
