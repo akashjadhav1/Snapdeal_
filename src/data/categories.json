@@ -1,0 +1,75 @@
+[
+  {
+    "items": [
+      "Mobile and Accessories",
+      "Computers and Accessories",
+      "Audio and Music",
+      "Cameras and Accessories",
+      "Camera Accessories",
+      "Gaming",
+      "Home and Kitchen"
+    ],
+    "name": "Electronics and Gadgets"
+  },
+  {
+    "items": [
+      "Footwear",
+      "Women's Clothing",
+      "Men's Clothing",
+      "Accessories",
+      "Kids' Clothing"
+    ],
+    "name": "Clothing and Accessories"
+  },
+  {
+    "items": [
+      "Movies and TV Shows"
+    ],
+    "name": "Entertainment"
+  },
+  {
+    "items": [
+      "Health Care",
+      "Personal Care"
+    ],
+    "name": "Personal Care and Health"
+  },
+  {
+    "items": [
+      "Jewelry",
+      "Beauty Products",
+      "Fragrances",
+      "Fashion",
+      "Watches"
+    ],
+    "name": "Beauty and Fashion"
+  },
+  {
+    "items": [
+      "Kitchen and Dining",
+      "Home Appliances",
+      "Personal Care and Health",
+      "Home Decor",
+      "Kitchen Appliances",
+      "Garden and Outdoor",
+      "Furniture",
+      "Pets and Animals"
+    ],
+    "name": "Home and Kitchen"
+  },
+  {
+    "items": [
+      "Fitness Equipment",
+      "Sportswear and Equipment",
+      "Cycling",
+      "Camping and Hiking"
+    ],
+    "name": "Sports and Outdoor"
+  },
+  {
+    "items": [
+      "Backpacks and Bags"
+    ],
+    "name": "Travel and Luggage"
+  }
+]

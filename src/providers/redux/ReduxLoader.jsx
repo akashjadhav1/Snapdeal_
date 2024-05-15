@@ -17,12 +17,6 @@ export default function ReduxLoader() {
   }, [dispatch]);
 
   useEffect(() => {
-    const unsubscribe = () => dispatch(fetchData());
-
-    return () => unsubscribe();
-  }, [filters, dispatch]);
-
-  useEffect(() => {
     const unsubscribe = () => {
       if (user.isAuthenticated) dispatch(fetchUserData());
     };
