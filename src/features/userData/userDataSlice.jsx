@@ -1,36 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getFirestore, doc, onSnapshot } from "firebase/firestore";
-
-// Async thunk to fetch user data including cart and shortlist
-export const fetchUserData = createAsyncThunk(
-  "userData/fetchUserData",
-  (_, { getState, dispatch }) => {
-    const state = getState();
-    const uid = state.user.data.uid;
-    if (!uid) {
-      throw new Error("User not authenticated");
-    }
-    const userDataRef = doc(getFirestore(), "user_data", uid);
-    return new Promise((resolve, reject) => {
-      onSnapshot(
-        userDataRef,
-        (userDataSnapshot) => {
-          const userData = userDataSnapshot.data();
-          dispatch(setUserData(userData));
-          resolve();
-        },
-        (error) => {
-          reject(error);
-        }
-      );
-    });
-  }
-);
+import {
+  getFirestore,
+  doc,
+  onSnapshot,
+  setDoc,
+  collection,
+} from "firebase/firestore";
+import { fetchUserData } from "./fetchUserData";
 
 // Define initial state for user data
 const initialState = {
-  cart: [],
-  shortlist: [],
+  cart: null,
+  shortlist: null,
   status: "idle",
   error: null,
 };
@@ -59,4 +40,5 @@ const userDataSlice = createSlice({
   },
 });
 
+export const { setUserData } = userDataSlice.actions;
 export default userDataSlice.reducer;

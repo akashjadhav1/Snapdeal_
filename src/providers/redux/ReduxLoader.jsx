@@ -1,12 +1,10 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchData, setMinPrice } from "@/features/products/productsSlice";
 import { fetchUser } from "@/features/user/userSlice";
-import { fetchUserData } from "@/features/userData/userDataSlice";
+import { fetchUserData } from "@/features/userData/fetchUserData";
 
 export default function ReduxLoader() {
   const dispatch = useDispatch();
-  const filters = useSelector((state) => state.products.filters);
   const user = useSelector((state) => state.user);
   const userData = useSelector((state) => state.userData);
 
@@ -17,12 +15,12 @@ export default function ReduxLoader() {
   }, [dispatch]);
 
   useEffect(() => {
-    const unsubscribe = () => {
-      if (user.isAuthenticated) dispatch(fetchUserData());
-    };
+    if (user.isAuthenticated) dispatch(fetchUserData());
+  }, [user]);
 
-    return () => unsubscribe();
-  }, [user.data]);
+  useEffect(() => {
+    console.log(userData);
+  }, [userData]);
 
   return null;
 }
