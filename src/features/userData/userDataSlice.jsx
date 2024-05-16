@@ -1,16 +1,15 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import {
-  getFirestore,
-  doc,
-  onSnapshot,
-  setDoc,
-  collection,
-} from "firebase/firestore";
-import { fetchUserData } from "./fetchUserData";
+  fetchUserData,
+  addToCart,
+  incrementQuantity,
+  decrementQuantity,
+  removeFromCart,
+} from "./userDataThunks";
 
 // Define initial state for user data
 const initialState = {
-  cart: null,
+  cart: [],
   shortlist: null,
   status: "idle",
   error: null,
@@ -36,6 +35,18 @@ const userDataSlice = createSlice({
     builder.addCase(fetchUserData.rejected, (state, action) => {
       state.status = "rejected";
       state.error = action.error.message;
+    });
+    builder.addCase(addToCart.fulfilled, (state, action) => {
+      state.cart = action.payload;
+    });
+    builder.addCase(incrementQuantity.fulfilled, (state, action) => {
+      state.cart = action.payload;
+    });
+    builder.addCase(decrementQuantity.fulfilled, (state, action) => {
+      state.cart = action.payload;
+    });
+    builder.addCase(removeFromCart.fulfilled, (state, action) => {
+      state.cart = action.payload;
     });
   },
 });

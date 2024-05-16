@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "@/features/user/userSlice";
-import { fetchUserData } from "@/features/userData/fetchUserData";
+import { fetchUserData } from "@/features/userData/userDataThunks";
 import { Spinner } from "@nextui-org/react";
 
 export default function ReduxLoader({ children }) {
