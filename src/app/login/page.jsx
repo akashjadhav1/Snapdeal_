@@ -9,6 +9,8 @@ import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { login, loginWithGoogle } from "@/features/user/userSlice";
 import Link from "next/link";
+import Logo from "@/assets/logo.png";
+import Image from "next/image";
 
 function Login() {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
@@ -37,6 +39,12 @@ function Login() {
 
   return (
     <div className="flex min-h-screen items-center justify-center">
+      <Image
+        src={Logo}
+        alt="Snapdeal"
+        priority={true}
+        className="absolute right-8 top-8"
+      />
       <div className="bg-white rounded-2xl flex w-full min-h-screen items-center">
         <div className="w-2/3 p-5">
           <div className="py-10 bg-white flex flex-col items-center">

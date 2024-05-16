@@ -24,7 +24,7 @@ export default function NavbarComponent() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const user = useSelector((state) => state.user);
   const path = usePathname();
-  if (path === "/login") return null;
+  if (path === "/login" || path === "/signup") return null;
 
   return (
     <Navbar className="bg-[#E40046] overflow-x-auto">

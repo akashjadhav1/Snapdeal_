@@ -9,6 +9,8 @@ import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { loginWithGoogle, signup } from "@/features/user/userSlice";
 import Link from "next/link";
+import Logo from "@/assets/logo.png";
+import Image from "next/image";
 
 function Signup() {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
@@ -38,6 +40,12 @@ function Signup() {
 
   return (
     <div className="flex min-h-screen items-center justify-center">
+      <Image
+        src={Logo}
+        alt="Snapdeal"
+        priority={true}
+        className="absolute left-8 top-8"
+      />
       <div className="bg-white rounded-2xl flex w-full min-h-screen items-center">
         <div className="flex w-1/3 min-h-screen bg-[#E40046] text-white items-center">
           <div className="mx-auto my-auto items-center">
