@@ -13,7 +13,7 @@ import {
 } from "@nextui-org/react";
 
 export default function Products() {
-  const { lastProductRef, data, isFetching, isError, error } = useProducts();
+  const { lastProductRef, data, isFetching, isError, error } = useProducts({});
 
   if (isError) {
     return (

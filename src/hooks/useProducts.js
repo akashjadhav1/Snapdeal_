@@ -14,24 +14,30 @@ async function fetchProducts({ pageParam = 1, filters }) {
   }
 }
 
-export default function useProducts() {
-  const [filters, setFilters] = useState({});
+export default function useProducts({
+  searchQuery = undefined,
+  category = undefined,
+  subcategory = undefined,
+  minPrice = undefined,
+  maxPrice = undefined,
+}) {
+  const [filters, setFilters] = useState({
+    q: searchQuery,
+    category,
+    subcategory,
+    minPrice,
+    maxPrice,
+  });
+
   const intersectionRef = useRef(null);
 
-  const { data, fetchNextPage, hasNextPage, isFetching, isError, error } =
-    useInfiniteQuery({
-      queryKey: ["products", filters],
-      queryFn: ({ pageParam }) => fetchProducts({ pageParam, filters }),
-      staleTime: 3600000,
-      getNextPageParam: (lastPage) =>
-        lastPage.page < lastPage.totalPages ? lastPage.page + 1 : undefined,
-    });
-
-  const intersectionCallback = (entry) => {
-    if (entry.isIntersecting && hasNextPage) {
-      fetchNextPage();
-    }
-  };
+  const { data, fetchNextPage, isFetching, isError, error } = useInfiniteQuery({
+    queryKey: ["products", filters],
+    queryFn: ({ pageParam }) => fetchProducts({ pageParam, filters }),
+    staleTime: 3600000,
+    getNextPageParam: (lastPage) =>
+      lastPage.page < lastPage.totalPages ? lastPage.page + 1 : undefined,
+  });
 
   const { ref: lastProductRef, entry } = useIntersection({
     root: intersectionRef.current,
