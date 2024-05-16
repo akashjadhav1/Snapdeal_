@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mantine/hooks": "^7.9.1",
     "@nextui-org/navbar": "^2.0.30",
     "@nextui-org/react": "^2.3.6",
     "@nextui-org/system": "^2.1.2",
