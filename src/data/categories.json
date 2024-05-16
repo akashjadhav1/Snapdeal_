@@ -1,75 +1,84 @@
 [
   {
+    "name": "Electronics and Gadgets",
+    "slug": "electronics-and-gadgets",
     "items": [
-      "Mobile and Accessories",
-      "Computers and Accessories",
-      "Audio and Music",
-      "Cameras and Accessories",
-      "Camera Accessories",
-      "Gaming",
-      "Home and Kitchen"
-    ],
-    "name": "Electronics and Gadgets"
+      { "name": "Mobile and Accessories", "slug": "mobile-and-accessories" },
+      {
+        "name": "Computers and Accessories",
+        "slug": "computers-and-accessories"
+      },
+      { "name": "Audio and Music", "slug": "audio-and-music" },
+      { "name": "Cameras and Accessories", "slug": "cameras-and-accessories" },
+      { "name": "Camera Accessories", "slug": "camera-accessories" },
+      { "name": "Gaming", "slug": "gaming" },
+      { "name": "Home and Kitchen", "slug": "home-and-kitchen" }
+    ]
   },
   {
+    "name": "Clothing and Accessories",
+    "slug": "clothing-and-accessories",
     "items": [
-      "Footwear",
-      "Women's Clothing",
-      "Men's Clothing",
-      "Accessories",
-      "Kids' Clothing"
-    ],
-    "name": "Clothing and Accessories"
+      { "name": "Footwear", "slug": "footwear" },
+      { "name": "Women's Clothing", "slug": "womens-clothing" },
+      { "name": "Men's Clothing", "slug": "mens-clothing" },
+      { "name": "Accessories", "slug": "accessories" },
+      { "name": "Kids' Clothing", "slug": "kids-clothing" }
+    ]
   },
   {
-    "items": [
-      "Movies and TV Shows"
-    ],
-    "name": "Entertainment"
+    "name": "Entertainment",
+    "slug": "entertainment",
+    "items": [{ "name": "Movies and TV Shows", "slug": "movies-and-tv-shows" }]
   },
   {
+    "name": "Personal Care and Health",
+    "slug": "personal-care-and-health",
     "items": [
-      "Health Care",
-      "Personal Care"
-    ],
-    "name": "Personal Care and Health"
+      { "name": "Health Care", "slug": "health-care" },
+      { "name": "Personal Care", "slug": "personal-care" }
+    ]
   },
   {
+    "name": "Beauty and Fashion",
     "items": [
-      "Jewelry",
-      "Beauty Products",
-      "Fragrances",
-      "Fashion",
-      "Watches"
-    ],
-    "name": "Beauty and Fashion"
+      { "name": "Jewelry", "slug": "jewelry" },
+      { "name": "Beauty Products", "slug": "beauty-products" },
+      { "name": "Fragrances", "slug": "fragrances" },
+      { "name": "Fashion", "slug": "fashion" },
+      { "name": "Watches", "slug": "watches" }
+    ]
   },
   {
+    "name": "Home and Kitchen",
     "items": [
-      "Kitchen and Dining",
-      "Home Appliances",
-      "Personal Care and Health",
-      "Home Decor",
-      "Kitchen Appliances",
-      "Garden and Outdoor",
-      "Furniture",
-      "Pets and Animals"
-    ],
-    "name": "Home and Kitchen"
+      { "name": "Kitchen and Dining", "slug": "kitchen-and-dining" },
+      { "name": "Home Appliances", "slug": "home-appliances" },
+      {
+        "name": "Personal Care and Health",
+        "slug": "personal-care-and-health"
+      },
+      { "name": "Home Decor", "slug": "home-decor" },
+      { "name": "Kitchen Appliances", "slug": "kitchen-appliances" },
+      { "name": "Garden and Outdoor", "slug": "garden-and-outdoor" },
+      { "name": "Furniture", "slug": "furniture" },
+      { "name": "Pets and Animals", "slug": "pets-and-animals" }
+    ]
   },
   {
+    "name": "Sports and Outdoor",
     "items": [
-      "Fitness Equipment",
-      "Sportswear and Equipment",
-      "Cycling",
-      "Camping and Hiking"
-    ],
-    "name": "Sports and Outdoor"
+      { "name": "Fitness Equipment", "slug": "fitness-equipment" },
+      {
+        "name": "Sportswear and Equipment",
+        "slug": "sportswear-and-equipment"
+      },
+      { "name": "Cycling", "slug": "cycling" },
+      { "name": "Camping and Hiking", "slug": "camping-and-hiking" }
+    ]
   },
   {
-    "items": [
-      "Backpacks and Bags"
-    ],
-    "name": "Travel and Luggage"
+    "name": "Travel and Luggage",
+    "items": [{ "name": "Backpacks and Bags", "slug": "backpacks-and-bags" }]
   }
 ]

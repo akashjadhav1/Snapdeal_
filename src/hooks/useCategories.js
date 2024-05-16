@@ -1,20 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
-import { db } from "@/config/firebase";
-import { getDocs, collection } from "firebase/firestore";
+import axios from "axios";
 
 async function fetchCategories() {
-  const categoriesCollection = collection(db, "categories");
-  const snapshot = await getDocs(categoriesCollection);
-  return snapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-  }));
+  try {
+    const response = await axios.get("/api/categories");
+    return response.data;
+  } catch (error) {
+    throw new Error(`Error fetching categories: ${error.message}`);
+  }
 }
 
 export default function useCategories() {
   return useQuery({
     queryKey: ["categories"],
-    queryFn: fetchCategories,
+    queryFn: () => fetchCategories(),
     staleTime: 3600000,
   });
 }
