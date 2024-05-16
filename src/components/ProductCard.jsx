@@ -1,9 +1,8 @@
 "use client";
 
 import React from "react";
-import { GoHeart, GoHeartFill } from "react-icons/go";
 import { renderStars } from "@/utils/renderStars";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Button,
   Card,
@@ -13,16 +12,17 @@ import {
   Image,
 } from "@nextui-org/react";
 import ShortListHeart from "./ShortListHeart";
+import { addToCart } from "@/features/userData/userDataThunks";
 
 export default function ProductCard({ product, handleClick }) {
   const cart = useSelector((state) => state.userData.cart);
   const isAddedToCart = cart.some((item) => item.id === product.id);
-
+  const dispatch = useDispatch();
   const handleCardClick = () => handleClick(product.id);
 
   const handleAddToCart = (e) => {
     e.stopPropagation();
-    console.log("Add to cart:", product.id);
+    dispatch(addToCart(product.id));
   };
 
   return (
@@ -53,11 +53,11 @@ export default function ProductCard({ product, handleClick }) {
       <CardFooter>
         <Button
           size="small"
-          className="bg-blue-700 text-white hover:bg-blue-800 w-full"
-          disabled={isAddedToCart}
+          className="bg-blue-700 hover:bg-blue-800 text-white w-full"
+          isDisabled={isAddedToCart}
           onClick={handleAddToCart}
         >
-          Add to Cart
+          {isAddedToCart ? "Added" : "Add to Cart"}
         </Button>
       </CardFooter>
     </Card>

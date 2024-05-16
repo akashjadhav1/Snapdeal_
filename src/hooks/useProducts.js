@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useIntersection } from "@mantine/hooks";
 import axios from "axios";
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 
 async function fetchProducts({ pageParam = 1, filters }) {
   try {
@@ -14,21 +14,7 @@ async function fetchProducts({ pageParam = 1, filters }) {
   }
 }
 
-export default function useProducts({
-  searchQuery = undefined,
-  category = undefined,
-  subcategory = undefined,
-  minPrice = undefined,
-  maxPrice = undefined,
-}) {
-  const [filters, setFilters] = useState({
-    q: searchQuery,
-    category,
-    subcategory,
-    minPrice,
-    maxPrice,
-  });
-
+export default function useProducts(filters = {}) {
   const intersectionRef = useRef(null);
 
   const { data, fetchNextPage, isFetching, isError, error } = useInfiniteQuery({
@@ -49,8 +35,6 @@ export default function useProducts({
   }, [entry]);
 
   return {
-    filters,
-    setFilters,
     lastProductRef,
     data,
     isFetching,
