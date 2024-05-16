@@ -18,12 +18,38 @@ import { IoCartOutline, IoSearchSharp } from "react-icons/io5";
 import AvatarDropdown from "./AvatarDropdown";
 import { useSelector } from "react-redux";
 import LoginModal from "./LoginModal";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export default function NavbarComponent() {
+  const [searchQuery, setSearchQuery] = React.useState("");
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const user = useSelector((state) => state.user);
   const path = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  // Initialize searchQuery if path starts with /products
+  React.useEffect(() => {
+    if (typeof path === "string" && path.startsWith("/products")) {
+      const query = searchParams.get("q");
+      if (query) {
+        setSearchQuery(query);
+      }
+    }
+  }, [path, searchParams]);
+
+  const handleSearch = () => {
+    // Conditionally redirect based on pathname
+    if (path !== "/products") {
+      router.push("/products?q=" + searchQuery);
+    } else {
+      router.replace({
+        pathname: router.pathname,
+        query: searchParams.toString() + `&q=${searchQuery}`,
+      });
+    }
+  };
+
   if (path === "/login" || path === "/signup") return null;
 
   return (
@@ -56,11 +82,16 @@ export default function NavbarComponent() {
               inputWrapper:
                 "h-full font-normal text-default-500 bg-white rounded-none",
             }}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search for products and brands"
             size="sm"
             type="search"
           />
-          <Button className="rounded-none bg-[#333333] w-1/4 text-white p-4">
+          <Button
+            className="rounded-none bg-[#333333] w-1/4 text-white p-4"
+            onClick={handleSearch}
+          >
             <IoSearchSharp className="text-white text-lg flex-shrink-0" />
             Search
           </Button>
