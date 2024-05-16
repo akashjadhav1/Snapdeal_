@@ -10,7 +10,7 @@ import {
 // Define initial state for user data
 const initialState = {
   cart: [],
-  shortlist: null,
+  shortlist: [],
   status: "idle",
   error: null,
 };

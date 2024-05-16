@@ -108,6 +108,7 @@ export const removeFromCart = createAsyncThunk(
 export const addToShortlist = createAsyncThunk(
   "userData/addToShortlist",
   async (id, { getState }) => {
+    console.log("Adding to shortlist", id);
     const state = getState();
     const uid = state.user.data.uid;
     if (!uid) {
@@ -117,7 +118,7 @@ export const addToShortlist = createAsyncThunk(
     const userDataCollectionRef = collection(db, "user_data");
     const userDataRef = doc(userDataCollectionRef, uid);
 
-    const userDataSnapshot = getDoc(userDataRef);
+    const userDataSnapshot = await getDoc(userDataRef);
     if (userDataSnapshot.exists()) {
       const userData = userDataSnapshot.data();
       const updatedShortlist = [...userData.shortlist, id];
@@ -142,7 +143,7 @@ export const removeFromShortlist = createAsyncThunk(
     const userDataCollectionRef = collection(db, "user_data");
     const userDataRef = doc(userDataCollectionRef, uid);
 
-    const userDataSnapshot = getDoc(userDataRef);
+    const userDataSnapshot = await getDoc(userDataRef);
     if (userDataSnapshot.exists()) {
       const userData = userDataSnapshot.data();
       const updatedShortlist = userData.shortlist.filter((item) => item !== id);
