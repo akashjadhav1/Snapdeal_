@@ -108,7 +108,6 @@ export const removeFromCart = createAsyncThunk(
 export const addToShortlist = createAsyncThunk(
   "userData/addToShortlist",
   async (id, { getState }) => {
-    console.log("Adding to shortlist", id);
     const state = getState();
     const uid = state.user.data.uid;
     if (!uid) {
