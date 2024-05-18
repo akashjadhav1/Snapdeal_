@@ -10,6 +10,7 @@ import {
   incrementQuantity,
   decrementQuantity,
 } from "@/features/userData/userDataThunks";
+import { useEffect } from "react";
 
 const Cart = () => {
   const { status, cart } = useSelector((state) => state.userData);
@@ -23,7 +24,9 @@ const Cart = () => {
     isLoading,
     isError,
     error,
-  } = useProductList(cart.map((item) => item.id));
+  } = useProductList(
+    cart && Array.isArray(cart) ? cart.map((item) => item.id) : []
+  );
 
   const handleGoBack = () => router.back();
 
@@ -44,10 +47,18 @@ const Cart = () => {
   }
 
   // Calculate subtotal
-  const subtotal = products.reduce((acc, curr) => {
-    const cartItem = cart.find((item) => item.id === curr.id);
-    return acc + curr.price * cartItem.quantity;
-  }, 0);
+  const subtotal = products
+    ? products
+        .filter((product) => product)
+        .reduce((acc, curr) => {
+          const cartItem = cart.find((item) => item && item.id === curr.id);
+          if (curr && curr.price && cartItem && cartItem.quantity) {
+            return acc + curr.price * cartItem.quantity;
+          } else {
+            return acc;
+          }
+        }, 0)
+    : 0;
 
   // Calculate taxes (18% of subtotal)
   const taxAmount = subtotal * 0.18;
@@ -88,70 +99,80 @@ const Cart = () => {
         <h1 className="text-3xl">Review your order</h1>
       </div>
 
-      {products.map((product) => {
-        const cartItem = cart.find((item) => item.id === product.id);
-        return (
-          <div
-            key={product.id}
-            className="flex justify-between items-center mt-10"
-          >
-            <div className="flex">
-              <Image
-                src={product.image}
-                alt={product.title}
-                classNames={{
-                  wrapper: "flex object-contain h-24 w-24 bg-white",
-                  img: "object-contain w-full h-full",
-                }}
-              />
-              <div className="mx-10 p-2 text-lg">
-                <p className="">{product.title}</p>
-                <div className="flex">
-                  <p className="text-gray-400">
-                    Color: <span className="text-white">Black</span>
+      {products.filter((product) => product).length === 0 ? (
+        <div className="flex min-w-full pt-10 justify-center items-center">
+          <p>Your cart is empty</p>
+        </div>
+      ) : (
+        products.map((product) => {
+          const cartItem = cart.find((item) => item.id === product.id);
+          return (
+            <div
+              key={product.id}
+              className="flex justify-between items-center mt-10"
+            >
+              <div className="flex">
+                <Image
+                  src={product.image}
+                  alt={product.title}
+                  classNames={{
+                    wrapper: "flex object-contain h-24 w-24 bg-white",
+                    img: "object-contain w-full h-full",
+                  }}
+                />
+                <div className="mx-10 p-2 text-lg">
+                  <p className="">{product.title}</p>
+                  <div className="flex">
+                    <p className="text-gray-400">
+                      Color: <span className="text-white">Black</span>
+                    </p>
+                    <p className="text-gray-400 mx-3">
+                      Size: <span className="text-white">42</span>
+                    </p>
+                  </div>
+                  <p>
+                    Rs. {product.price}{" "}
+                    <span className="text-gray-400">X {cartItem.quantity}</span>
                   </p>
-                  <p className="text-gray-400 mx-3">
-                    Size: <span className="text-white">42</span>
-                  </p>
-                </div>
-                <p>
-                  Rs. {product.price}{" "}
-                  <span className="text-gray-400">X {cartItem.quantity}</span>
-                </p>
-                <div className="flex items-center justify-between max-w-12 text-md">
-                  <Button
-                    isIconOnly
-                    size="sm"
-                    variant="text"
-                    onClick={() => handleCartOperation(product.id, "decrement")}
-                    className="bg-gray-200 rounded-full"
-                  >
-                    -
-                  </Button>
-                  <span className="mx-2">{cartItem.quantity}</span>
-                  <Button
-                    isIconOnly
-                    size="sm"
-                    variant="text"
-                    onClick={() => handleCartOperation(product.id, "increment")}
-                    className="bg-gray-200 rounded-full"
-                  >
-                    +
-                  </Button>
+                  <div className="flex items-center justify-between max-w-12 text-md">
+                    <Button
+                      isIconOnly
+                      size="sm"
+                      variant="text"
+                      onClick={() =>
+                        handleCartOperation(product.id, "decrement")
+                      }
+                      className="bg-gray-200 rounded-full"
+                    >
+                      -
+                    </Button>
+                    <span className="mx-2">{cartItem.quantity}</span>
+                    <Button
+                      isIconOnly
+                      size="sm"
+                      variant="text"
+                      onClick={() =>
+                        handleCartOperation(product.id, "increment")
+                      }
+                      className="bg-gray-200 rounded-full"
+                    >
+                      +
+                    </Button>
+                  </div>
                 </div>
               </div>
+              <div className="flex items-center">
+                <button
+                  className="flex items-center justify-center w-10 h-10"
+                  onClick={() => handleCartOperation(product.id, "remove")}
+                >
+                  &#10006;
+                </button>
+              </div>
             </div>
-            <div className="flex items-center">
-              <button
-                className="flex items-center justify-center w-10 h-10"
-                onClick={() => handleCartOperation(product.id, "remove")}
-              >
-                &#10006;
-              </button>
-            </div>
-          </div>
-        );
-      })}
+          );
+        })
+      )}
 
       <hr className="mt-10" />
 
