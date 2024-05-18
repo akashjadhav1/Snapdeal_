@@ -28,10 +28,7 @@ function ShortListHeart({ productId }) {
   };
 
   return (
-    <div
-      className="absolute top-4 right-4 m-2 cursor-pointer text-2xl z-10"
-      onClick={handleHeartClick}
-    >
+    <div onClick={handleHeartClick}>
       {isShortlisted ? (
         <GoHeartFill className="text-red-500" />
       ) : (
