@@ -53,9 +53,6 @@ export default function AvatarDropdown() {
             <p className="font-semibold">Signed in as</p>
             <p className="font-semibold">{user.data?.email}</p>
           </DropdownItem>
-          <DropdownItem as={Link} href="/orders" key="orders">
-            Your Orders
-          </DropdownItem>
           <DropdownItem as={Link} href="/shortlist" key="shortlist">
             Your Shortlist
           </DropdownItem>
