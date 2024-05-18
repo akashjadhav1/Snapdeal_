@@ -3,7 +3,7 @@
 import { Button, Image, Spinner } from "@nextui-org/react";
 import { FaArrowLeft } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
-import useProductList from "@/hooks/useproductsList";
+import useProductList from "@/hooks/useProductsList";
 import { useSelector, useDispatch } from "react-redux";
 import {
   removeFromCart,
