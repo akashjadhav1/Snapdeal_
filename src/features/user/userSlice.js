@@ -75,6 +75,7 @@ export const loginWithGoogle = createAsyncThunk(
 export const logout = createAsyncThunk("user/logout", async () => {
   try {
     await signOut(auth);
+    window.location.reload();
   } catch (error) {
     throw error;
   }

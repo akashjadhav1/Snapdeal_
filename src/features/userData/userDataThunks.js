@@ -13,7 +13,7 @@ export const fetchUserData = createAsyncThunk(
   "userData/fetchUserData",
   async (_, { getState, dispatch }) => {
     const state = getState();
-    const uid = state.user.data.uid;
+    const uid = state.user.data ? state.user.data.uid : null;
     if (!uid) {
       throw new Error("User not authenticated");
     }
@@ -42,7 +42,7 @@ export const addToCart = createAsyncThunk(
   "userData/addToCart",
   async (id, { getState }) => {
     const state = getState();
-    const uid = state.user.data.uid;
+    const uid = state.user.data ? state.user.data.uid : null;
     const updatedCart = [...state.userData.cart, { id, quantity: 1 }];
     if (uid) {
       const userDataCollectionRef = collection(db, "user_data");
@@ -57,7 +57,7 @@ export const incrementQuantity = createAsyncThunk(
   "userData/incrementQuantity",
   async (id, { getState }) => {
     const state = getState();
-    const uid = state.user.data.uid;
+    const uid = state.user.data ? state.user.data.uid : null;
     const updatedCart = state.userData.cart.map((item) =>
       item.id === id ? { ...item, quantity: item.quantity + 1 } : item
     );
@@ -74,7 +74,7 @@ export const decrementQuantity = createAsyncThunk(
   "userData/decrementQuantity",
   async (id, { getState }) => {
     const state = getState();
-    const uid = state.user.data.uid;
+    const uid = state.user.data ? state.user.data.uid : null;
     const updatedCart = state.userData.cart
       .map((item) =>
         item.id === id ? { ...item, quantity: item.quantity - 1 } : item
@@ -93,7 +93,7 @@ export const removeFromCart = createAsyncThunk(
   "userData/removeFromCart",
   async (id, { getState }) => {
     const state = getState();
-    const uid = state.user.data.uid;
+    const uid = state.user.data ? state.user.data.uid : null;
     const updatedCart = state.userData.cart.filter((item) => item.id !== id);
     if (uid) {
       const userDataCollectionRef = collection(db, "user_data");
@@ -109,7 +109,7 @@ export const addToShortlist = createAsyncThunk(
   "userData/addToShortlist",
   async (id, { getState }) => {
     const state = getState();
-    const uid = state.user.data.uid;
+    const uid = state.user.data ? state.user.data.uid : null;
     if (!uid) {
       throw new Error("User not authenticated");
     }
@@ -134,7 +134,7 @@ export const removeFromShortlist = createAsyncThunk(
   "userData/removeFromShortlist",
   async (id, { getState }) => {
     const state = getState();
-    const uid = state.user.data.uid;
+    const uid = state.user.data ? state.user.data.uid : null;
     if (!uid) {
       throw new Error("User not authenticated");
     }

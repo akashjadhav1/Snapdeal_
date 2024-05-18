@@ -10,15 +10,16 @@ import {
   incrementQuantity,
   decrementQuantity,
 } from "@/features/userData/userDataThunks";
-import { useEffect } from "react";
 
 const Cart = () => {
-  const { status, cart } = useSelector((state) => state.userData);
+  const cart = useSelector((state) => state.userData.cart);
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const isUserDataLoading = status !== "fulfilled";
+  const isUserDataLoading =
+    !isAuthenticated &&
+    useSelector((state) => state.userData.status === "loading");
   const {
     data: products,
     isLoading,
