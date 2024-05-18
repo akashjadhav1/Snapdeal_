@@ -4,9 +4,25 @@ import React from "react";
 import useCategories from "@/hooks/useCategories";
 import { Accordion, AccordionItem, Skeleton, Slider } from "@nextui-org/react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function FiltersMenu({ filters, setFilters }) {
   const { data: categories, isLoading, isError, error } = useCategories();
+  const path = usePathname();
+  const router = useRouter();
+
+  const handleSetPrice = ([minPrice, maxPrice]) => {
+    setFilters({
+      ...filters,
+      minPrice: minPrice.toString(),
+      maxPrice: maxPrice.toString(),
+    });
+    router.push(
+      `${path}?${new URLSearchParams({ minPrice, maxPrice })}`,
+      undefined,
+      { shallow: true }
+    );
+  };
 
   if (isLoading)
     return (
@@ -78,13 +94,7 @@ export default function FiltersMenu({ filters, setFilters }) {
               parseInt(filters.minPrice || "0"),
               parseInt(filters.maxPrice || "100000"),
             ]}
-            onChange={(value) => {
-              setFilters({
-                ...filters,
-                minPrice: value[0].toString(),
-                maxPrice: value[1].toString(),
-              });
-            }}
+            onChange={(value) => handleSetPrice(value)}
             formatOptions={{ style: "currency", currency: "INR" }}
             className="max-w-md"
           />
