@@ -98,7 +98,11 @@ export default function NavbarComponent() {
         </NavbarItem>
       </NavbarContent>
       <NavbarContent as="div" className="items-center" justify="end">
-        <Button className="hidden md:flex rounded-none bg-transparent text-white p-4 min-w-30">
+        <Button
+          as={Link}
+          href="/cart"
+          className="hidden md:flex rounded-none bg-transparent text-white p-4 min-w-30"
+        >
           Cart
           <IoCartOutline className="text-white text-xl" />
         </Button>
