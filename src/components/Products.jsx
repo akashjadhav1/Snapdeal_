@@ -54,8 +54,7 @@ export default function Products({ filters = {} }) {
               ></Button>
             </CardFooter>
           </Card>
-<<<<<<< HEAD
-=======
+
           //   <Card
           //   className="max-w-[400px] cursor-pointer hover:shadow-xl transition-shadow duration-300"
           //   onClick={handleCardClick}
@@ -91,7 +90,6 @@ export default function Products({ filters = {} }) {
           //   </Button>
           // </CardFooter>
           // </Card>
->>>>>>> ee8f80a (Show skeleton while products are loading)
         ))}
       </div>
     );

@@ -27,7 +27,7 @@ export default function CategoryMenu() {
     );
 
   return (
-    <div className="hidden md:flex flex-col w-72 p-4 m-8 mb-auto bg-white shadow-xl rounded">
+    <div className="hidden md:flex flex-col w-[320px] h-screen  p-4 m-8 mb-auto bg-white shadow-xl rounded sticky top-[7%]">
       <span className="text-xs mb-2 p-2">TOP CATEGORIES</span>
       {categories.map((category, index) => (
         <div key={index} className="text-sm p-2 hover:bg-gray-200">
