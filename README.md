@@ -40,7 +40,7 @@ This project is a frontend web application inspired by Snapdeal, built with Next
 
 1. Clone the repository:
    ```sh
-   git clone (https://github.com/akashjadhav1/Snapdeal_.git)
+   git clone https://github.com/akashjadhav1/Snapdeal_.git
    ```
 2. Navigate to the project directory:
    ```sh
