@@ -74,31 +74,7 @@ This project is a frontend web application inspired by Snapdeal, built with Next
 
 The application is deployed on Vercel and can be accessed at: [Snapdeal WebApp](https://snapdeal-fawn.vercel.app/)
 
-## Screenshots
 
-1. **Home Page**
-   ![Home Page](images/home-page.png)
-
-2. **Search Results Page**
-   ![Search Results Page](images/search-results.png)
-
-3. **Filter**
-   ![Filter](images/filter.png)
-
-4. **Cart Page**
-   ![Cart Page](images/cart-page.png)
-
-5. **Login Page**
-   ![Login Page](images/login-page.png)
-
-6. **Login Popup**
-   ![Login Popup](images/login-popup.png)
-
-7. **Register Page**
-   ![Register Page](images/register-page.png)
-
-8. **Shortlists Page**
-   ![Shortlists Page](images/shortlists-page.png)
 
 ## API Reference
 
