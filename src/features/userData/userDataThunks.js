@@ -9,6 +9,12 @@ import {
 import { db } from "@/config/firebase";
 import { setUserData } from "./userDataSlice";
 
+// fetchUserData.js
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { doc, onSnapshot, setDoc, collection } from "firebase/firestore";
+import { db } from "@/config/firebase";
+import { setUserData } from "./userDataSlice";
+
 export const fetchUserData = createAsyncThunk(
   "userData/fetchUserData",
   async (_, { getState, dispatch }) => {
@@ -21,14 +27,12 @@ export const fetchUserData = createAsyncThunk(
     const userDataCollectionRef = collection(db, "user_data");
     const userDataRef = doc(userDataCollectionRef, uid);
 
-    // Subscribe to changes in userDataRef
     onSnapshot(userDataRef, (userDataSnapshot) => {
       if (userDataSnapshot.exists()) {
         const userData = userDataSnapshot.data();
         dispatch(setUserData(userData));
       } else {
         const cart = getState().userData.cart;
-        // If userDataRef doesn't exist, set default data
         setDoc(userDataRef, {
           cart: cart,
           shortlist: [],
@@ -37,6 +41,12 @@ export const fetchUserData = createAsyncThunk(
     });
   }
 );
+
+
+// addToCart.js
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { doc, setDoc, collection } from "firebase/firestore";
+import { db } from "@/config/firebase";
 
 export const addToCart = createAsyncThunk(
   "userData/addToCart",
@@ -47,11 +57,12 @@ export const addToCart = createAsyncThunk(
     if (uid) {
       const userDataCollectionRef = collection(db, "user_data");
       const userDataRef = doc(userDataCollectionRef, uid);
-      setDoc(userDataRef, { cart: updatedCart }, { merge: true });
+      await setDoc(userDataRef, { cart: updatedCart }, { merge: true });
     }
     return updatedCart;
   }
 );
+
 
 export const incrementQuantity = createAsyncThunk(
   "userData/incrementQuantity",
