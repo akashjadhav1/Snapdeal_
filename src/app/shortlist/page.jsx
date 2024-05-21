@@ -15,6 +15,16 @@ import { useSelector } from "react-redux";
 
 export default function Shortlist() {
   const shortlist = useSelector((state) => state.userData.shortlist);
+
+  // If shortlist is empty, return the "No shortlisted products" message
+  if (shortlist.length === 0) {
+    return (
+      <div className="flex justify-center items-center h-96">
+        <h1 className="text-gray-500">No shortlisted products</h1>
+      </div>
+    );
+  }
+
   const { data, isLoading, isError, error } = useProductList(shortlist);
 
   if (isError) {
@@ -60,13 +70,17 @@ export default function Shortlist() {
     );
   }
 
-  return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-w-full mx-5 mt-8">
-      {data.map((product) => (
-        <div key={product.id}>
-          <ProductCard product={product} />
-        </div>
-      ))}
-    </div>
-  );
+  
+    return (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-w-full mx-5 mt-8">
+        {data.map((product) => (
+          product && product.id ? (
+            <div key={product.id}>
+              <ProductCard product={product} />
+            </div>
+          ) : null
+        ))}
+      </div>
+    );
+ 
 }
