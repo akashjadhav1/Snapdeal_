@@ -32,7 +32,7 @@ export default function ProductCard({ product }) {
       className="max-w-[400px] cursor-pointer hover:shadow-xl transition-shadow duration-300"
       onClick={handleCardClick}
     >
-      <CardHeader className="relative flex items-center justify-center h-64">
+      <CardHeader className="relative flex items-center justify-center h-24 lg:h-64">
         <Image
           alt={product.title}
           src={product.image}
@@ -41,7 +41,7 @@ export default function ProductCard({ product }) {
             img: "object-contain w-full h-full",
           }}
         />
-        <div className="absolute top-4 right-4 m-2 cursor-pointer text-2xl z-10">
+        <div className="absolute top-0 lg:top-4 right-4 m-2 cursor-pointer text-2xl z-10">
           <ShortListHeart productId={product.id} />
         </div>
       </CardHeader>

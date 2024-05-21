@@ -54,15 +54,13 @@ export default function Products({ filters = {} }) {
               ></Button>
             </CardFooter>
           </Card>
-
-          
         ))}
       </div>
     );
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-w-full mx-5 mt-8">
+    <div className="grid grid-cols-2  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-w-full mx-5 mt-8">
       {data.pages.map((page, pageIndex) =>
         page.products.map((product, productIndex) => {
           const isLastProduct =
